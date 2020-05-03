@@ -1,6 +1,7 @@
 package com.musicstore.Model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username","email"}))
@@ -8,7 +9,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private String firstName;
     private String lastName;
@@ -16,15 +17,19 @@ public class User {
     private String email;
     private String password;
     private String user_type;
-    private Boolean enabled;
+    private Boolean active;
 
-    public User(String firstName, String lastName, String email, String password, String username, Boolean enabled, String user_type) {
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public User(String firstName, String lastName, String email, String password, String username, Boolean active, String user_type) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.enabled = enabled;
+        this.active = active;
         this.user_type = user_type;
     }
 
@@ -39,11 +44,11 @@ public class User {
         this.username = username;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -87,11 +92,24 @@ public class User {
         this.user_type = user_type;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getName(){
+        String name = firstName + " " + lastName;
+        return name;
     }
 }
