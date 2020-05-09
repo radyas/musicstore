@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/base :: head(~{})">
+
+</head>
+<body>
+    <div th:replace="admin/base :: logo"></div>
+
+    <nav th:replace="admin/base :: nav"></nav>
+
+    <div th:replace="admin/base :: content('Profile',~{::main})">
+        <main>
+            <div class="col-md-8 col-md-offset-2">
+                <section class="widget">
+                    <header>
+                        <h4><i class="fa fa-user"></i> User Profile </h4>
+                    </header>
+                    <div class="body">
+                        <form id="user-form" class="form-horizontal form-label-left" novalidate="" method="post"
+                              th:action="@{/profile}" th:object="${user}">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="text-align-center">
+                                        <img class="img-circle" src="static/admin/img/3.png" alt="64x64" style="height: 64px;">
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h3 class="mt-sm mb-xs" th:text="${user.getName()}">Maryna Gils</h3>
+                                    <div th:if="${successMessage}" class="alert alert-success alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Success!</strong> <span th:text="${successMessage}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <fieldset>
+                                <legend class="section">Personal Info</legend>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="first-name">First Name
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="first-name" name="firstName" required="required"
+                                               class="form-control input-transparent" data-parsley-id="6"
+                                               th:value="${user.getFirstName()}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="last-name">Last Name
+                                        <span class="required" >*</span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="last-name" name="lastName"
+                                               required="required" class="form-control input-transparent"
+                                               data-parsley-id="8" th:value="${user.getLastName()}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="email-label" for="email" class="control-label col-sm-4">Email <span class="required">*</span></label>
+                                    <div class="col-sm-8">
+                                        <input id="email" type="email" required="required" class="form-control input-transparent"
+                                               name="email" data-parsley-id="14" th:value="${user.getEmail()}">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend class="section">Account Info</legend>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="username">Username</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="username"  name="username" disabled th:value="${user.getUsername()}"
+                                               class="form-control input-transparent" data-parsley-id="6">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="password">Password
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="password" id="password" name="password" required="required"
+                                               class="form-control input-transparent" data-parsley-id="6">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-4" for="confirm">Confirm Password
+                                        <span class="required">*</span>
+                                    </label>
+                                    <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                           class="validation-message"></label>
+                                    <div class="col-sm-8">
+                                        <input type="password" id="confirm" name="confirm" required="required"
+                                               class="form-control input-transparent" data-parsley-id="6">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-2 col-md-offset-5">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <!-- common libraries. required for every page-->
+    <script th:src="@{/static/admin/lib/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/static/admin/lib/jquery-pjax/jquery.pjax.js}"></script>
+    <script th:src="@{/static/admin/lib/bootstrap-sass/assets/javascripts/bootstrap.min.js}"></script>
+    <script th:src="@{/static/admin/lib/widgster/widgster.js}"></script>
+
+    <!-- common application js -->
+    <script th:src="@{/static/admin/js/app.js}"></script>
+    <script th:src="@{/static/admin/js/settings.js}"></script>
+
+    <!-- page specific scripts -->
+    <!-- page libs -->
+    <script th:src="@{/static/admin/lib/slimScroll/jquery.slimscroll.min.js}"></script>
+    <script th:src="@{/static/admin/lib/jquery.sparkline/index.js}"></script>
+
+    <script th:src="@{/static/admin/lib/backbone/backbone.js}"></script>
+    <script th:src="@{/static/admin/lib/backbone.localStorage/backbone.localStorage-min.js}"></script>
+
+    <script th:src="@{/static/admin/lib/d3/d3.min.js}"></script>
+    <script th:src="@{/static/admin/lib/nvd3/build/nv.d3.min.js}"></script>
+</body>
+</html>

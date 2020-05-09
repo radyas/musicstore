@@ -33,6 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(
+                        "/profile**",
+                        "/admin"
+                ).hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(
                         "/register**",
                         "/static/**",
                         "/",

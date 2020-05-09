@@ -41,4 +41,7 @@ public class UserService  {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
 }

@@ -11,21 +11,6 @@ public class IndexController {
     public String root(){
         return "index";
     }
-//
-//    @GetMapping("/register")
-//    public String register(){
-//        return "admin/register";
-//    }
-//
-//    @GetMapping("/login")
-//    public String login(Model model){
-//        return "admin/login";
-//    }
-
-//    @GetMapping("/error")
-//    public String error(){
-//        return "admin/error";
-//    }
 
     @GetMapping("/news")
     public String news(){
@@ -46,4 +31,5 @@ public class IndexController {
     public String contact(){
         return "contact";
     }
+
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username","email"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
 
     @Id
@@ -18,12 +18,13 @@ public class User {
     private String password;
     private String user_type;
     private Boolean active;
+    transient String confirm;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(String firstName, String lastName, String email, String password, String username, Boolean active, String user_type) {
+    public User(String firstName, String lastName, String email, String password, String username, Boolean active, String user_type, String confirm) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -31,6 +32,7 @@ public class User {
         this.password = password;
         this.active = active;
         this.user_type = user_type;
+        this.confirm = confirm;
     }
 
     public User() {
@@ -111,5 +113,18 @@ public class User {
     public String getName(){
         String name = firstName + " " + lastName;
         return name;
+    }
+
+    public String toString()
+    {
+        return id + " " + firstName + " " + lastName + " " + username + " " + email + " " + password + " " + active + " " + user_type + " " + confirm;
+    }
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
     }
 }
