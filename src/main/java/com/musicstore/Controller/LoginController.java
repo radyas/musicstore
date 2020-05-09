@@ -1,6 +1,7 @@
 package com.musicstore.Controller;
 
 import com.musicstore.Model.User;
+import com.musicstore.Repository.UserRepository;
 import com.musicstore.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
     public ModelAndView login(){
@@ -66,6 +71,19 @@ public class LoginController {
         modelAndView.addObject("user", user);
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("admin/index");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/admin/users", method = RequestMethod.GET)
+    public ModelAndView userList(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        List<User> users = userRepository.findAll();
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("users", users);
+        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("admin/userList");
         return modelAndView;
     }
 }

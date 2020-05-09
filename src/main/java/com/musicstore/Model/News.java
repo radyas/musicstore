@@ -15,6 +15,9 @@ public class News {
     private String path;
     private String createdBy;
 
+    public News() {
+    }
+
     public News(String name, String description, String path, String createdBy) {
         this.name = name;
         this.description = description;

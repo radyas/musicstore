@@ -15,6 +15,9 @@ public class Contact {
     private String subject;
     private String message;
 
+    public Contact() {
+    }
+
     public Contact(String name, String email, String subject, String message) {
         this.name = name;
         this.email = email;

@@ -105,22 +105,22 @@
 					<div class="blog_posts">
 						
 						<!-- Blog Post -->
-						<div class="blog_post">
+						<div class="blog_post" th:each="ob: ${news}">
 							<div class="row">
-								
+
 								<!-- Blog Post Image -->
 								<div class="col-lg-7">
-									<div class="blog_post_image"><img src="static/images/blog_1.jpg" alt=""></div>
+									<div class="blog_post_image"><img th:src="${ob.getPath()}" alt=""></div>
 								</div>
 
 								<!-- Blog Post Content -->
 								<div class="col-lg-5 blog_col">
 									<div class="blog_post_content">
 										<div class="blog_post_date"><a href="#">Oct 19, 2018</a></div>
-										<div class="blog_post_title"><a href="#">Festival list for 2019</a></div>
+										<div class="blog_post_title"><a href="#" th:text="${ob.getName()}">Festival list for 2019</a></div>
 										<div class="blog_post_info">
 											<ul class="d-flex flex-row align-items-start justify-content-start">
-												<li>By <a href="#">Admin</a></li>
+												<li>By <a href="#" th:text="${ob.getCreatedBy()}">Admin</a></li>
 												<li>
 													<ul class="d-flex flex-row align-items-start justify-content-start">
 														<li><a href="#">music</a></li>
@@ -131,115 +131,7 @@
 											</ul>
 										</div>
 										<div class="blog_post_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, neque ac porttitor scelerisque, neque ac porttitor scelerisquenisi nisl tincidunt enim, non aliquet diam neque sed urna.</p>
-										</div>
-										<div class="blog_post_link"><a href="#">read more</a></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<!-- Blog Post -->
-						<div class="blog_post">
-							<div class="row">
-								
-								<!-- Blog Post Image -->
-								<div class="col-lg-7">
-									<div class="blog_post_image"><img src="static/images/blog_2.jpg" alt=""></div>
-								</div>
-
-								<!-- Blog Post Content -->
-								<div class="col-lg-5 blog_col">
-									<div class="blog_post_content">
-										<div class="blog_post_date"><a href="#">Oct 19, 2018</a></div>
-										<div class="blog_post_title"><a href="#">Music Seminary at Festival</a></div>
-										<div class="blog_post_info">
-											<ul class="d-flex flex-row align-items-start justify-content-start">
-												<li>By <a href="#">Admin</a></li>
-												<li>
-													<ul class="d-flex flex-row align-items-start justify-content-start">
-														<li><a href="#">music</a></li>
-														<li><a href="#">show</a></li>
-														<li><a href="#">festival</a></li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, neque ac porttitor scelerisque, neque ac porttitor scelerisquenisi nisl tincidunt enim, non aliquet diam neque sed urna.</p>
-										</div>
-										<div class="blog_post_link"><a href="#">read more</a></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<!-- Blog Post -->
-						<div class="blog_post">
-							<div class="row">
-								
-								<!-- Blog Post Image -->
-								<div class="col-lg-7">
-									<div class="blog_post_image"><img src="static/images/blog_3.jpg" alt=""></div>
-								</div>
-
-								<!-- Blog Post Content -->
-								<div class="col-lg-5 blog_col">
-									<div class="blog_post_content">
-										<div class="blog_post_date"><a href="#">Oct 19, 2018</a></div>
-										<div class="blog_post_title"><a href="#">New album release in 2019</a></div>
-										<div class="blog_post_info">
-											<ul class="d-flex flex-row align-items-start justify-content-start">
-												<li>By <a href="#">Admin</a></li>
-												<li>
-													<ul class="d-flex flex-row align-items-start justify-content-start">
-														<li><a href="#">music</a></li>
-														<li><a href="#">show</a></li>
-														<li><a href="#">festival</a></li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, neque ac porttitor scelerisque, neque ac porttitor scelerisquenisi nisl tincidunt enim, non aliquet diam neque sed urna.</p>
-										</div>
-										<div class="blog_post_link"><a href="#">read more</a></div>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<!-- Blog Post -->
-						<div class="blog_post">
-							<div class="row">
-								
-								<!-- Blog Post Image -->
-								<div class="col-lg-7">
-									<div class="blog_post_image"><img src="static/images/blog_4.jpg" alt=""></div>
-								</div>
-
-								<!-- Blog Post Content -->
-								<div class="col-lg-5 blog_col">
-									<div class="blog_post_content">
-										<div class="blog_post_date"><a href="#">Oct 19, 2018</a></div>
-										<div class="blog_post_title"><a href="#">Music Seminary at Festival</a></div>
-										<div class="blog_post_info">
-											<ul class="d-flex flex-row align-items-start justify-content-start">
-												<li>By <a href="#">Admin</a></li>
-												<li>
-													<ul class="d-flex flex-row align-items-start justify-content-start">
-														<li><a href="#">music</a></li>
-														<li><a href="#">show</a></li>
-														<li><a href="#">festival</a></li>
-													</ul>
-												</li>
-											</ul>
-										</div>
-										<div class="blog_post_text">
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum, neque ac porttitor scelerisque, neque ac porttitor scelerisquenisi nisl tincidunt enim, non aliquet diam neque sed urna.</p>
+											<p th:text="${ob.getDescription()}">Text</p>
 										</div>
 										<div class="blog_post_link"><a href="#">read more</a></div>
 									</div>

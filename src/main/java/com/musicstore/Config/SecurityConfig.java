@@ -39,12 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/register**",
                         "/static/**",
+                        "/api/**",
                         "/",
                         "/news**",
                         "/error**",
                         "/artist**",
                         "/artists**",
-                        "/contactus**").permitAll()
+                        "/contact**").permitAll()
                 .mvcMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
 //                .antMatchers("/api/**").authenticated()

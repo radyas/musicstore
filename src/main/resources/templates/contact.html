@@ -122,15 +122,23 @@
 				<!-- Contact Form -->
 				<div class="col-lg-6 offset-lg-1 contact_col">
 					<div class="contact_form_container">
-						<form action="#" class="contact_form" id="contact_form">
+						<form th:action="@{/contact}" method="post" class="contact_form" id="contact_form">
 							<div>
 								<div class="row">
-									<div class="col-md-6 contact_input_col"><input type="text" class="contact_input" placeholder="Your Name" required="required"></div>
-									<div class="col-md-6"><input type="email" class="contact_input" placeholder="Your E-mail" required="required"></div>
+									<div class="col-md-6 contact_input_col">
+										<input type="text" name="name" class="contact_input" placeholder="Your Name" required="required">
+									</div>
+									<div class="col-md-6">
+										<input type="email" name="email" class="contact_input" placeholder="Your E-mail" required="required">
+									</div>
 								</div>
 							</div>
-							<div><input type="text" class="contact_input" placeholder="Subject" required="required"></div>
-							<div><textarea class="contact_input contact_textarea" placeholder="Message" required="required"></textarea></div>
+							<div>
+								<input type="text" name="subject" class="contact_input" placeholder="Subject" required="required">
+							</div>
+							<div>
+								<textarea name="message" class="contact_input contact_textarea" placeholder="Message" required="required"></textarea>
+							</div>
 							<button class="button contact_form_button"><span>send</span></button>
 						</form>
 					</div>
