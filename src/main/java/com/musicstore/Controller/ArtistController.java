@@ -1,8 +1,8 @@
 package com.musicstore.Controller;
 
-import com.musicstore.Model.News;
+import com.musicstore.Model.Artist;
 import com.musicstore.Model.User;
-import com.musicstore.Repository.NewsRepository;
+import com.musicstore.Repository.ArtistRepository;
 import com.musicstore.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,47 +17,47 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class NewsController {
+public class ArtistController {
+
     @Autowired
-    private NewsRepository newsRepository;
+    private ArtistRepository artistRepository;
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/admin/news", method = RequestMethod.POST)
-    public ModelAndView addNews(@Valid News news, BindingResult bindingResult) {
+    @RequestMapping(value = "/admin/artist", method = RequestMethod.POST)
+    public ModelAndView addArtist(@Valid Artist artist, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
-        newsRepository.save(news);
+        artistRepository.save(artist);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("user", user);
         modelAndView.addObject("successMessage", "News Added Successfully");
-        modelAndView.setViewName("admin/newsAdd");
+        modelAndView.setViewName("admin/artistAdd");
 
         return modelAndView;
     }
 
-    @RequestMapping(value="/admin/newsList", method = RequestMethod.GET)
-    public ModelAndView newsList(){
+    @RequestMapping(value="/admin/artistList", method = RequestMethod.GET)
+    public ModelAndView artistList(){
         ModelAndView modelAndView = new ModelAndView();
-        List<News> news = newsRepository.findAll();
+        List<Artist> artist = artistRepository.findAll();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("user", user);
-        modelAndView.addObject("newslist", news);
-        modelAndView.setViewName("admin/news");
+        modelAndView.addObject("artistList", artist);
+        modelAndView.setViewName("admin/artist");
         return modelAndView;
     }
 
-    @RequestMapping(value="/admin/news", method = RequestMethod.GET)
-    public ModelAndView newsForm(){
+    @RequestMapping(value="/admin/artist", method = RequestMethod.GET)
+    public ModelAndView artistAdd(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("user", user);
-        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("admin/newsAdd");
+        modelAndView.setViewName("admin/artistAdd");
         return modelAndView;
     }
 }

@@ -86,4 +86,37 @@ public class LoginController {
         modelAndView.setViewName("admin/userList");
         return modelAndView;
     }
+
+    @RequestMapping(value="/admin/addUser", method = RequestMethod.GET)
+    public ModelAndView addUser(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("admin/userAdd");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin/addUser", method = RequestMethod.POST)
+    public ModelAndView newUser(@Valid User user, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        User userExists = userService.findUserByUserName(user.getUsername());
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("username", "error.user",
+                            "There is already a user registered with the user name provided");
+        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("admin/userAdd");
+        } else {
+            user.setUser_type("2");
+            userService.addUser(user);
+            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("admin/userAdd");
+
+        }
+        return modelAndView;
+    }
 }

@@ -1,10 +1,43 @@
+<!-- light-blue - v3.3.0 - 2016-03-08 -->
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/base :: head(~{})">
+
 </head>
 <body>
+<div th:replace="admin/base :: logo"></div>
+
+<nav th:replace="admin/base :: nav"></nav>
+
+<div th:replace="admin/base :: content('Manage News',~{})"></div>
+
+
+<!-- common libraries. required for every page-->
+<script th:src="@{/static/admin/lib/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/static/admin/lib/jquery-pjax/jquery.pjax.js}"></script>
+<script th:src="@{/static/admin/lib/bootstrap-sass/assets/javascripts/bootstrap.min.js}"></script>
+<script th:src="@{/static/admin/lib/widgster/widgster.js}"></script>
+
+<!-- common application js -->
+<script th:src="@{/static/admin/js/app.js}"></script>
+<script th:src="@{/static/admin/js/settings.js}"></script>
+
+<!-- page specific scripts -->
+<!-- page libs -->
+<script th:src="@{/static/admin/lib/slimScroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/static/admin/lib/jquery.sparkline/index.js}"></script>
+
+<script th:src="@{/static/admin/lib/backbone/backbone.js}"></script>
+<script th:src="@{/static/admin/lib/backbone.localStorage/backbone.localStorage-min.js}"></script>
+
+<script th:src="@{/static/admin/lib/d3/d3.min.js}"></script>
+<script th:src="@{/static/admin/lib/nvd3/build/nv.d3.min.js}"></script>
+
+<!-- page application js -->
+<script th:src="@{/static/admin/js/index.js}"></script>
+<script th:src="@{/static/admin/js/chat.js}"></script>
+
 
 </body>
 </html>
