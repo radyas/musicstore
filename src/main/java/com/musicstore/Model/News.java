@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String description;
     private String path;
@@ -25,11 +25,11 @@ public class News {
         this.createdBy = createdBy;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -113,7 +113,7 @@ public class LoginController {
             user.setUser_type("2");
             userService.addUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
+            modelAndView.addObject("user", userExists);
             modelAndView.setViewName("admin/userAdd");
 
         }

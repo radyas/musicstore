@@ -46,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/artist**",
                         "/artists**",
                         "/contact**").permitAll()
-                .mvcMatchers("/admin/**").hasAuthority("ADMIN")
+                .mvcMatchers(
+                        "/admin/**",
+                        "/admin/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
 //                .antMatchers("/api/**").authenticated()
                 .and()
